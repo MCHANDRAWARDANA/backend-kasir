@@ -22,7 +22,7 @@ app.use("/uploads", express.static("uploads"));
 // Middleware
 app.use(bodyParser.json()); 
 app.use(cors({
-  origin: "http://localhost:5173", " https://mchandrawardana.github.io/frontend/"
+  origin:  " https://mchandrawardana.github.io/frontend/"
 })); 
 
 app.use("/pelanggan",pelangganRouter)
