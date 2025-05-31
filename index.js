@@ -4,14 +4,14 @@ const cors = require("cors");
 require("dotenv").config();
 
 const sequelize = require("./src/config/databaseConfig");
-const pelangganRouter = require("./src/controllers/pelangganControllers")
-const produkRouter = require("./src/controllers/produkControllers")
-const penjualanRouter = require("./src/controllers/PenjualanController")
-const detailpenjualanRouter = require("./src/controllers/detailpenjualanControllers")
-const registrasiRouter = require("./src/controllers/registrasiController")
-const kategoriRouter = require("./src/controllers/kategoriControllers")
-const authRouter = require("./src/controllers/authController")
-const loginRouter = require("./src/controllers/loginController")
+const pelangganRouter = require("./src/controllers/pelangganControllers");
+const produkRouter = require("./src/controllers/produkControllers");
+const penjualanRouter = require("./src/controllers/PenjualanController");
+const detailpenjualanRouter = require("./src/controllers/detailpenjualanControllers");
+const registrasiRouter = require("./src/controllers/registrasiController");
+const kategoriRouter = require("./src/controllers/kategoriControllers");
+const authRouter = require("./src/controllers/authController");
+const loginRouter = require("./src/controllers/loginController");
 
 const app = express();
 
@@ -20,26 +20,28 @@ const syncDb = process.env.DB_SYNC === "true"; // Ambil nilai DB_SYNC dari envir
 
 app.use("/uploads", express.static("uploads"));
 // Middleware
-app.use(bodyParser.json()); 
-app.use(cors({
-  origin:  " https://mchandrawardana.github.io/frontend/"
-})); 
+app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: "https://mchandrawardana.github.io/frontend/",
+  })
+);
 
-app.use("/pelanggan",pelangganRouter)
-app.use("/produk", produkRouter)
-app.use("/penjualan", penjualanRouter)
-app.use("/detailpenjualan", detailpenjualanRouter)
-app.use("/registrasi", registrasiRouter)
-app.use("/kategori", kategoriRouter)
-app.use("/auth", authRouter)
-app.use("/login", loginRouter)
+app.use("/pelanggan", pelangganRouter);
+app.use("/produk", produkRouter);
+app.use("/penjualan", penjualanRouter);
+app.use("/detailpenjualan", detailpenjualanRouter);
+app.use("/registrasi", registrasiRouter);
+app.use("/kategori", kategoriRouter);
+app.use("/auth", authRouter);
+app.use("/login", loginRouter);
 
 // Sinkronisasi database dan memulai server
 sequelize
   .sync() // Gunakan force dari environment
-    .then(() => {
+  .then(() => {
     app.listen(PORT, () => {
-    console.log(`Server berjalan pada port ${PORT}`);
+      console.log(`Server berjalan pada port ${PORT}`);
       if (syncDb) {
         console.log("Database sinkronisasi");
       } else {
