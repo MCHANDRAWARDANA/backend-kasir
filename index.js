@@ -21,6 +21,11 @@ const syncDb = process.env.DB_SYNC === "true"; // Ambil nilai DB_SYNC dari envir
 app.use("/uploads", express.static("uploads"));
 // Middleware
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  console.log("Request dari origin:", req.headers.origin);
+  next();
+});
+
 app.use(
   cors({
     origin: "https://mchandrawardana.github.io",
