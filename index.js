@@ -23,7 +23,9 @@ app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "https://mchandrawardana.github.io/frontend/",
+    origin: "https://mchandrawardana.github.io",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 
